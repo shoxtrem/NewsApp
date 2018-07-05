@@ -1,22 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Layout for a single list item that displays an earthquake -->
+<?xml version="1.0" encoding="utf-8"?><!-- Layout for a single list item that displays an article -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:baselineAligned="false"
     android:orientation="horizontal"
-    android:paddingEnd="16dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingStart="16dp"
-    android:baselineAligned="false">
+    android:paddingBottom="@dimen/listItemVerticalPadding"
+    android:paddingEnd="@dimen/listItemHorizontalPadding"
+    android:paddingLeft="@dimen/listItemHorizontalPadding"
+    android:paddingRight="@dimen/listItemHorizontalPadding"
+    android:paddingStart="@dimen/listItemHorizontalPadding"
+    android:paddingTop="@dimen/listItemVerticalPadding">
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginLeft="@dimen/listItemHorizontalPadding"
+        android:layout_marginStart="@dimen/listItemHorizontalPadding"
         android:layout_weight="1"
         android:orientation="vertical">
 
@@ -29,7 +30,8 @@
             android:maxLines="1"
             android:textAllCaps="true"
             android:textColor="@color/colorSection"
-            android:textSize="12sp"
+            android:textSize="@dimen/sectionNameTextSize"
+            tools:targetApi="jelly_bean"
             tools:text="news" />
 
         <TextView
@@ -37,25 +39,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:maxLines="2"
+            android:maxLines="3"
+            android:paddingBottom="@dimen/webTitleVerticalPadding"
+            android:paddingTop="@dimen/webTitleVerticalPadding"
             android:textColor="@color/colorTitle"
-            android:textSize="16sp"
-            tools:text="Long placeholder location that should wrap to more than 2 lines of text" />
+            android:textSize="@dimen/webTitleTextSize"
+            tools:text="Long placeholder location that should wrap to more than 3   lines of text" />
 
         <TextView
             android:id="@+id/contributor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
-            tools:text="Author"/>
+            android:maxLines="1"
+            android:textSize="@dimen/authorNameTextSize"
+            tools:text="Author" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginLeft="@dimen/dateHorizontalPadding"
+        android:layout_marginStart="@dimen/dateHorizontalPadding"
         android:orientation="vertical">
 
         <TextView
@@ -63,7 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:textSize="12sp"
+            android:textSize="@dimen/dateTextSize"
             tools:text="Mar 6, 2010" />
 
         <TextView
@@ -71,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:textSize="12sp"
+            android:textSize="@dimen/dateTextSize"
             tools:text="3:00 PM" />
 
     </LinearLayout>

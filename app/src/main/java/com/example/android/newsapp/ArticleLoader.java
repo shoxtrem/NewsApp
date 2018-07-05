@@ -9,7 +9,7 @@ public class ArticleLoader extends AsyncTaskLoader<List<Article>> {
 
     private String url;
 
-    public ArticleLoader(Context context, String newUrl){
+    public ArticleLoader(Context context, String newUrl) {
         super(context);
         url = newUrl;
     }
@@ -25,11 +25,10 @@ public class ArticleLoader extends AsyncTaskLoader<List<Article>> {
 
     @Override
     public List<Article> loadInBackground() {
-        if (url == null){
+        if (url == null) {
             return null;
         }
 
-        List<Article> articles = QueryUtils.fetchArticleData(url);
-        return articles;
+        return QueryUtils.fetchArticleData(url);
     }
 }

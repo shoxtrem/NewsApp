@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="listItemHorizontalPadding">16dp</dimen>
+    <dimen name="listItemVerticalPadding">8dp</dimen>
+    <dimen name="sectionNameTextSize">12sp</dimen>
+    <dimen name="webTitleTextSize">16sp</dimen>
+    <dimen name="authorNameTextSize">12sp</dimen>
+    <dimen name="webTitleVerticalPadding">8dp</dimen>
+    <dimen name="dateHorizontalPadding">16dp</dimen>
+    <dimen name="dateTextSize">12sp</dimen>
+
+</resources>

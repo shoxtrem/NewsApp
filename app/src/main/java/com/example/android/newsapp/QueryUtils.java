@@ -17,9 +17,11 @@ package com.example.android.newsapp;
 
 import android.text.TextUtils;
 import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,7 +31,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -37,7 +38,9 @@ import java.util.List;
  */
 public final class QueryUtils {
 
-    /** Tag for the log messages */
+    /**
+     * Tag for the log messages
+     */
     private static final String LOG_TAG = QueryUtils.class.getSimpleName();
 
     /**
@@ -63,11 +66,9 @@ public final class QueryUtils {
             Log.e(LOG_TAG, "Problem making the HTTP request.", e);
         }
 
-        // Extract relevant fields from the JSON response and create a list of {@link Earthquake}s
-        List<Article> articles = extractFeatureFromJson(jsonResponse);
-
-        // Return the list of {@link Earthquake}s
-        return articles;
+        // Extract relevant fields from the JSON response and create a list of {@link Article}s
+        // Return the list of {@link Article}s
+        return extractFeatureFromJson(jsonResponse);
     }
 
     /**
@@ -112,7 +113,7 @@ public final class QueryUtils {
                 Log.e(LOG_TAG, "Error response code: " + urlConnection.getResponseCode());
             }
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Problem retrieving the earthquake JSON results.", e);
+            Log.e(LOG_TAG, "Problem retrieving the article JSON results.", e);
         } finally {
             if (urlConnection != null) {
                 urlConnection.disconnect();
@@ -184,9 +185,6 @@ public final class QueryUtils {
                 // Extract the value for the key called "webUrl"
                 String webUrl = currentArticle.getString("webUrl");
 
-                // Extract the value for the key called "contributor"
-//                String contributor = currentArticle.getString("contributor");
-
                 // Extract the value for the key called "webTitle"
                 String webTitle = currentArticle.getString("webTitle");
 
@@ -194,11 +192,20 @@ public final class QueryUtils {
                 String sectionName = currentArticle.getString("sectionName");
 
                 // Extract the value for the key called "webPublicationDate"
-//                Date date = new Date(currentArticle.getString("webPublicationDate"));
+                String date = currentArticle.getString("webPublicationDate");
 
+                // Extract the value for the key called "contributor"
+                ArrayList<String> contributorList = new ArrayList<>();
+                JSONArray tagsArray = currentArticle.getJSONArray("tags");
+                for (int j = 0; j < tagsArray.length(); j++) {
+                    JSONObject currentTag = tagsArray.getJSONObject(j);
+                    // Extract the value for the key called "webTitle"
+                    contributorList.add(currentTag.getString("webTitle"));
+
+                }
                 // Create a new {@link Article} object with the magnitude, location, date,
                 // and url from the JSON results.
-                Article article = new Article(webUrl, webTitle ,sectionName);
+                Article article = new Article(webUrl, webTitle, sectionName, contributorList, date);
 
                 // Add the new {@link Article} to the list of articles.
                 articles.add(article);
@@ -208,7 +215,7 @@ public final class QueryUtils {
             // If an error is thrown when executing any of the above statements in the "try" block,
             // catch the exception here, so the app doesn't crash. Print a log message
             // with the message from the exception.
-            Log.e("QueryUtils", "Problem parsing the earthquake JSON results", e);
+            Log.e("QueryUtils", "Problem parsing the article JSON results", e);
         }
 
         // Return the list of articles
