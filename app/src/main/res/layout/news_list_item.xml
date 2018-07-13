@@ -11,7 +11,7 @@
     android:paddingRight="@dimen/listItemHorizontalPadding"
     android:paddingStart="@dimen/listItemHorizontalPadding"
     android:paddingTop="@dimen/listItemVerticalPadding">
-
+<!--TODO: Replace with ConstraintLayout-->
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
